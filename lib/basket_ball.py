@@ -182,3 +182,69 @@ def game_dict():
             ]
         }
     }
+
+def get_all_players():
+    all_players = {}
+    for team in ['home', 'away']:
+        for player in game_dict()[team]['players']:
+            all_players.update(
+                {player['name']: {
+                   "name": player["name"],
+                   "number": player["number"],
+                   "position": player["position"],
+                   "points_per_game": player["points_per_game"],
+                   "rebounds_per_game": player["rebounds_per_game"],
+                   "assists_per_game": player["assists_per_game"],
+                   "steals_per_game": player["steals_per_game"],
+                   "blocks_per_game": player["blocks_per_game"],
+                   "career_points": player["career_points"],
+                   "age": player["age"],
+                   "height_inches": player["height_inches"],
+                   "shoe_brand": player["shoe_brand"],
+                    }
+                }
+            )
+    return all_players
+
+def num_points_per_game(player):
+    return(get_all_players()[player]["points_per_game"])
+    
+player = "player[name]"
+print(num_points_per_game("Rui Hachimura"))
+
+def player_age(player):
+    return(get_all_players()[player]["age"])
+
+player= "player[name]"
+print(player_age("Rui Hachimura"))
+
+def team_colors(team_name):
+    for team in game_dict():
+       if game_dict()[team]["team_name"] == team_name:
+          return game_dict()[team]["colors"]
+        
+print(team_colors("Cleveland Cavaliers"))
+
+def team_names():
+    team_names = []
+    for team in game_dict():
+        team_names.append(game_dict()[team]["team_name"])
+    return team_names
+            
+print(team_names())
+
+def player_number(team_name):
+    player_numbers = []
+    for team in game_dict():
+        if game_dict()[team]["team_name"] == team_name:
+            team_players = game_dict()[team]["players"]
+            for player in team_players:
+                player_numbers.append(player["number"])
+    return player_numbers
+
+print(player_number("Cleveland Cavaliers"))
+
+def player_stats(player):
+    return(get_all_players()[player])
+
+print(player_stats("Rui Hachimura"))        
